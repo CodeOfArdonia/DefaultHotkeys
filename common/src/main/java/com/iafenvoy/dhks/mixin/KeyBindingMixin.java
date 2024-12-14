@@ -23,6 +23,6 @@ public class KeyBindingMixin {
 
     @ModifyVariable(method = "<init>(Ljava/lang/String;Lnet/minecraft/client/util/InputUtil$Type;ILjava/lang/String;)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private static int beforeInit(int code) {
-        return KeyConfig.find(defaultHotkeys$currentTranslation, code);
+        return KeyConfig.find(defaultHotkeys$currentTranslation, code, "");
     }
 }

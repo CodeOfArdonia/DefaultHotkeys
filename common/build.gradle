@@ -7,4 +7,7 @@ dependencies {
     // which get remapped to the correct annotations on each platform.
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    modCompileOnly "maven.modrinth:modernkeybinding:OFIAZVy7"
+    modCompileOnly "maven.modrinth:amecs:HuXAp0GB"
 }

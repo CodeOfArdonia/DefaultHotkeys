@@ -11,7 +11,7 @@
     "sources": "https://github.com/CodeOfArdonia/DefaultHotkeys"
   },
   "license": "LGPL-3.0",
-  "icon": "logo.png",
+  "icon": "logo.jpg",
   "environment": "client",
   "entrypoints": {
   },

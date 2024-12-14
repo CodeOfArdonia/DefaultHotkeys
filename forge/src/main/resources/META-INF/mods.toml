@@ -11,7 +11,7 @@ authors = "IAFEnvoy"
 description = '''
 Change any default keybindings.
 '''
-logoFile = "logo.png"
+logoFile = "logo.jpg"
 
 [[dependencies.defaulted_hotkeys]]
 modId = "forge"

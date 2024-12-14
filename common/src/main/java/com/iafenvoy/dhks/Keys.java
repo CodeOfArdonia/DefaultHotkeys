@@ -22,7 +22,9 @@ public class Keys {
     }
 
     public static int getCode(String translate) {
-        return KEY_TO_ID.getOrDefault(translate, -1);
+        if (KEY_TO_ID.containsKey(translate)) return KEY_TO_ID.getInt(translate);
+        DefaultHotkeys.LOGGER.error("Cannot resolve hotkey value {}", translate);
+        return -1;
     }
 
     //Copy from net.minecraft.client.util.InputUtil

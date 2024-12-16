@@ -8,6 +8,7 @@ import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.util.Language;
 import org.apache.commons.io.FileUtils;
 
@@ -29,7 +30,7 @@ public class KeyConfig {
 
     public static int find(String translation, int code, String modifier) {
         if (CONFIGS.containsKey(translation)) return Keys.getCode(CONFIGS.get(translation).key);
-        CONFIGS.put(translation, new KeyObject(Language.getInstance().get(translation), Keys.getTranslate(code), modifier));
+        CONFIGS.put(translation, new KeyObject(Language.getInstance().get(translation, I18n.translate(translation)), Keys.getTranslate(code), modifier));
         return code;
     }
 

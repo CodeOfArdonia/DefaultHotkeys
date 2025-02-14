@@ -8,10 +8,11 @@ Config file `.minecraft\config\default-hotkeys.json` will auto generated after f
 
 ```json5
 {
-  //Translate key
   "key.advancements": {
-    //en_us translation
-    "comment": "Advancements",
+    //translate key
+    "comment": "key.advancements",
+    //translation in current language
+    "translation": "Advancements",
     //hotkey in vanilla format
     "key": "key.keyboard.l"
   },

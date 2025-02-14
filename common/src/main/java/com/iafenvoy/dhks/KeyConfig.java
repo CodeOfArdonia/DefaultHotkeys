@@ -8,7 +8,7 @@ import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.util.Language;
+import net.minecraft.client.resource.language.I18n;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -20,7 +20,7 @@ import java.util.TreeMap;
 public class KeyConfig {
     private static final Codec<Map<String, KeyObject>> CODEC = Codec.unboundedMap(Codec.STRING, RecordCodecBuilder.create(i -> i.group(
             Codec.STRING.optionalFieldOf("comment", "").forGetter(KeyObject::comment),
-            Codec.STRING.optionalFieldOf("translate", "").forGetter(x -> Language.getInstance().get(x.comment())),
+            Codec.STRING.optionalFieldOf("translate", "").forGetter(x -> I18n.translate(x.comment())),
             Codec.STRING.fieldOf("key").forGetter(KeyObject::key),
             Codec.STRING.optionalFieldOf("modifier", "").forGetter(KeyObject::modifier)
     ).apply(i, KeyObject::new)));

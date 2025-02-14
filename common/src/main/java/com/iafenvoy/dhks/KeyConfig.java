@@ -20,6 +20,7 @@ import java.util.TreeMap;
 public class KeyConfig {
     private static final Codec<Map<String, KeyObject>> CODEC = Codec.unboundedMap(Codec.STRING, RecordCodecBuilder.create(i -> i.group(
             Codec.STRING.optionalFieldOf("comment", "").forGetter(KeyObject::comment),
+            Codec.STRING.optionalFieldOf("translate", "").forGetter(x -> Language.getInstance().get(x.comment())),
             Codec.STRING.fieldOf("key").forGetter(KeyObject::key),
             Codec.STRING.optionalFieldOf("modifier", "").forGetter(KeyObject::modifier)
     ).apply(i, KeyObject::new)));
@@ -27,9 +28,9 @@ public class KeyConfig {
     private static final String CONFIG_PATH = "./config/default-hotkeys.json";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    public static int find(String translation, int code, String modifier) {
-        if (CONFIGS.containsKey(translation)) return Keys.getCode(CONFIGS.get(translation).key);
-        CONFIGS.put(translation, new KeyObject(Language.getInstance().get(translation), Keys.getTranslate(code), modifier));
+    public static int find(String translationKey, int code, String modifier) {
+        if (CONFIGS.containsKey(translationKey)) return Keys.getCode(CONFIGS.get(translationKey).key);
+        CONFIGS.put(translationKey, new KeyObject(translationKey, Keys.getTranslate(code), modifier));
         return code;
     }
 
@@ -50,5 +51,8 @@ public class KeyConfig {
     }
 
     private record KeyObject(String comment, String key, String modifier) {
+        public KeyObject(String comment, String translate, String key, String modifier) {
+            this(comment, key, modifier);
+        }
     }
 }

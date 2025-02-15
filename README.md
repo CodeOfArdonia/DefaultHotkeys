@@ -4,11 +4,12 @@ This mod can set the default hotkeys for any keybindings.
 
 ## Usage
 
-Config file `.minecraft\config\default-hotkeys.json` will auto generated after first launch.
+Config file `.minecraft\config\default-hotkeys.json` will auto generated after first fully launch. (In order to load
+translations correctly)
 
 ```json5
-{
-  "key.advancements": {
+[
+  {
     //translate key
     "comment": "key.advancements",
     //translation in current language
@@ -17,7 +18,7 @@ Config file `.minecraft\config\default-hotkeys.json` will auto generated after f
     "key": "key.keyboard.l"
   },
   //...more
-}
+]
 ```
 
 For all available key values, see

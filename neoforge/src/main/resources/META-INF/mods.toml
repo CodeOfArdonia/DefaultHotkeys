@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[2,)"
 issueTrackerURL = "https://github.com/CodeOfArdonia/DefaultHotkeys/issues"
 license = "LGPL-3.0"
 
@@ -11,18 +11,21 @@ authors = "IAFEnvoy"
 description = '''
 Change any default keybindings.
 '''
-logoFile = "logo.jpg"
+logoFile = "logo.png"
 
 [[dependencies.defaulted_hotkeys]]
-modId = "forge"
-mandatory = true
-versionRange = "[47,)"
+modId = "neoforge"
+type="required"
+versionRange = "[20.4,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.defaulted_hotkeys]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.20.1,1.20.2)"
+type="required"
+versionRange = "[1.20.4,1.20.5)"
 ordering = "NONE"
 side = "BOTH"
+
+[[mixins]]
+config = "defaulted_hotkeys.mixins.json"

@@ -11,7 +11,7 @@
     "sources": "https://github.com/CodeOfArdonia/DefaultHotkeys"
   },
   "license": "LGPL-3.0",
-  "icon": "logo.jpg",
+  "icon": "logo.png",
   "environment": "client",
   "entrypoints": {
   },
@@ -20,6 +20,6 @@
   ],
   "depends": {
     "fabricloader": "*",
-    "minecraft": "1.20.1"
+    "minecraft": "1.20.4"
   }
 }

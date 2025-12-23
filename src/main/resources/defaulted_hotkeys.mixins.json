@@ -1,0 +1,15 @@
+{
+  "package": "com.iafenvoy.dhks.mixin",
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "KeyMappingMixin",
+    "SimpleReloadInstanceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

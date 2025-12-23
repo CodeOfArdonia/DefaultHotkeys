@@ -1,33 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "modtemplate",
-  "name": "Mod Template",
+  "id": "defaulted_hotkeys",
+  "name": "Defaulted Hotkeys",
   "version": "${version}",
-  "authors": ["A Mod Author"],
+  "authors": [
+    "IAFEnvoy"
+  ],
   "contact": {
     "sources": "",
     "issues": ""
   },
-  "description": "A Mod Description",
-  "icon": "assets/icon.png",
+  "description": "Change any default keybindings.",
+  "icon": "logo.png",
   "license": "MIT",
   "environment": "*",
-  "accessWidener": "modtemplate.accesswidener",
   "entrypoints": {
-    "main": [
-      "dev.spagurder.modtemplate.fabric.FabricEntrypoint"
-    ],
-    "client": [
-      "dev.spagurder.modtemplate.fabric.FabricClientEntrypoint"
-    ],
-    "fabric-datagen": [
-      "dev.spagurder.modtemplate.fabric.datagen.FabricDataGeneratorEntrypoint"
-    ]
   },
   "mixins": [
-    "modtemplate.mixins.json"
-  ],
-  "depends": {
-    "fabric-api": "*"
-  }
+    "defaulted_hotkeys.mixins.json"
+  ]
 }

@@ -3,24 +3,23 @@ loaderVersion = "[2,)"
 license = "MIT"
 
 [[mods]]
-modId = "modtemplate"
-displayName = "Mod Template"
+modId = "defaulted_hotkeys"
+displayName = "Defaulted Hotkeys"
 version = "${version}"
-displayURL = ""
-logoFile = "assets/icon.png"
-authors = "A Mod Author"
-description = '''A Mod Description'''
+logoFile = "logo.png"
+authors = "IAFEnvoy"
+description = '''Change any default keybindings.'''
 
 [[mixins]]
-config = "modtemplate.mixins.json"
+config = "defaulted_hotkeys.mixins.json"
 
-[[dependencies.modtemplate]]
+[[dependencies.defaulted_hotkeys]]
 modId = "neoforge"
 type = "required"
 versionRange = "[1,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.modtemplate]]
+[[dependencies.defaulted_hotkeys]]
 modId = "minecraft"
 type = "required"

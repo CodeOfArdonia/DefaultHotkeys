@@ -2,7 +2,7 @@
   "package": "com.iafenvoy.dhks.mixin",
   "required": true,
   "minVersion": "0.8",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
@@ -11,5 +11,6 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "defaulted_hotkeys-refmap.json"
 }

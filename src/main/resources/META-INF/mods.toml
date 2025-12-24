@@ -11,15 +11,16 @@ authors = "IAFEnvoy"
 description = '''Change any default keybindings.'''
 
 [[dependencies.defaulted_hotkeys]]
-modId = "neoforge"
-type = "required"
+modId = "forge"
+mandatory = true
 versionRange = "[1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.defaulted_hotkeys]]
 modId = "minecraft"
-type = "required"
+mandatory = true
+versionRange = "[0,)"
 
 [[mixins]]
 config = "defaulted_hotkeys.mixins.json"

@@ -27,7 +27,6 @@ jsonlang {
 
 repositories {
     maven("https://maven.parchmentmc.org") { name = "ParchmentMC" }
-    maven("https://maven.shedaniel.me/") { name = "Cloth Config API" }
 }
 
 dependencies {
@@ -64,7 +63,7 @@ legacyForge {
 }
 
 mixin {
-    add(sourceSets["main"], "${property("mod.id")}.refmap.json")
+    add(sourceSets.main.get(), "${property("mod.id")}-refmap.json")
     config("${property("mod.id")}.mixins.json")
 }
 
@@ -126,7 +125,6 @@ publishMods {
         accessToken = env.MODRINTH_API_KEY.orNull()
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
-        optional("cloth-config")
     }
 
     curseforge {
@@ -134,6 +132,5 @@ publishMods {
         accessToken = env.CURSEFORGE_API_KEY.orNull()
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
-        optional("cloth-config")
     }
 }

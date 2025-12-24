@@ -1,8 +1,25 @@
-# Mod Template
+# Defaulted Hotkeys
 
-This is a multi-loader mod template for Fabric and Neoforge utilizing stonecutter. This is the Java-only version 
-of mod-template-kotlin.
-It's largely been adapted from KikuGie's Elytra Trims rewrite following major feature updates to Stonecutter. 
-Feel free to use, although be aware that no support is officially offered or guaranteed.
+This mod can set the default hotkeys for any keybindings.
 
-### Run scaffold.py to automate string replacements and file renames!
+## Usage
+
+Config file `.minecraft\config\default-hotkeys.json` will auto generated after first fully launch. (In order to load
+translations correctly)
+
+```json5
+[
+  {
+    //translate key
+    "comment": "key.advancements",
+    //translation in current language
+    "translation": "Advancements",
+    //hotkey in vanilla format
+    "key": "key.keyboard.l"
+  },
+  //...more
+]
+```
+
+For all available key values, see
+[Keys.java](https://github.com/CodeOfArdonia/DefaultHotkeys/blob/894408a90dd5aa795268dbe919ea7c9fc4866519/common/src/main/java/com/iafenvoy/dhks/Keys.java#L29)

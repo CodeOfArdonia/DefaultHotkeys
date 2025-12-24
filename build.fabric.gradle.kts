@@ -7,11 +7,9 @@ plugins {
 }
 
 tasks.named<ProcessResources>("processResources") {
-    fun prop(name: String) = project.property(name) as String
-
     val props = HashMap<String, String>().apply {
-        this["version"] = prop("mod.version")
-        this["minecraft"] = prop("deps.minecraft")
+        this["version"] = project.property("mod.version") as String
+        this["minecraft"] = project.property("deps.minecraft") as String
     }
 
     filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
@@ -19,7 +17,7 @@ tasks.named<ProcessResources>("processResources") {
     }
 }
 
-version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
+version = "${property("mod.version")}-${property("deps.minecraft")}-fabric"
 base.archivesName = property("mod.id") as String
 
 jsonlang {
@@ -51,7 +49,8 @@ fabricApi {
 
 tasks {
     processResources {
-        exclude("**/neoforge.mods.toml", "**/mods.toml")
+        exclude("**/neoforge.mods.toml", "**/mods.toml", "**/pack.mcmeta")
+        dependsOn("stonecutterGenerate")
     }
 
     register<Copy>("buildAndCollect") {
@@ -64,11 +63,10 @@ tasks {
 
 java {
     withSourcesJar()
-    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
-        JavaVersion.VERSION_21
-    } else {
-        JavaVersion.VERSION_17
-    }
+    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) JavaVersion.VERSION_21
+    else if (stonecutter.eval(stonecutter.current.version, ">=1.18")) JavaVersion.VERSION_17
+    else if (stonecutter.eval(stonecutter.current.version, ">=1.17")) JavaVersion.VERSION_16
+    else JavaVersion.VERSION_1_8
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat
 }
@@ -84,9 +82,13 @@ publishMods {
     file = tasks.remapJar.map { it.archiveFile.get() }
     additionalFiles.from(tasks.remapSourcesJar.map { it.archiveFile.get() })
 
-    type = BETA
-    displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version} Fabric"
-    version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
+    val modVersion = property("mod.version") as String
+    type = if (modVersion.contains("alpha")) ALPHA
+    else if (modVersion.contains("beta")) BETA
+    else STABLE
+
+    displayName = "${property("mod.name")} $modVersion for ${stonecutter.current.version} Fabric"
+    version = "${modVersion}-${property("deps.minecraft")}-fabric"
     changelog = provider { rootProject.file("CHANGELOG.md").readText() }
     modLoaders.add("fabric")
 
@@ -95,7 +97,6 @@ publishMods {
         accessToken = env.MODRINTH_API_KEY.orNull()
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
-        requires("fabric-api")
     }
 
     curseforge {
@@ -103,6 +104,5 @@ publishMods {
         accessToken = env.CURSEFORGE_API_KEY.orNull()
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
-        requires("fabric-api")
     }
 }

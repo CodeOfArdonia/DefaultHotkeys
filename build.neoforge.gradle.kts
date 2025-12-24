@@ -17,7 +17,7 @@ tasks.named<ProcessResources>("processResources") {
     }
 }
 
-version = "${property("mod.version")}+${property("deps.minecraft")}-neoforge"
+version = "${property("mod.version")}-${property("deps.minecraft")}-neoforge"
 base.archivesName = property("mod.id") as String
 
 jsonlang {
@@ -77,11 +77,10 @@ tasks {
 
 java {
     withSourcesJar()
-    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) {
-        JavaVersion.VERSION_21
-    } else {
-        JavaVersion.VERSION_17
-    }
+    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) JavaVersion.VERSION_21
+    else if (stonecutter.eval(stonecutter.current.version, ">=1.18")) JavaVersion.VERSION_17
+    else if (stonecutter.eval(stonecutter.current.version, ">=1.17")) JavaVersion.VERSION_16
+    else JavaVersion.VERSION_1_8
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat
 }
@@ -97,9 +96,12 @@ publishMods {
     file = tasks.jar.map { it.archiveFile.get() }
     additionalFiles.from(tasks.named<org.gradle.jvm.tasks.Jar>("sourcesJar").map { it.archiveFile.get() })
 
-    type = BETA
+    val modVersion = property("mod.version") as String
+    type = if (modVersion.contains("alpha")) ALPHA
+    else if (modVersion.contains("beta")) BETA
+    else STABLE
     displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version} Neoforge"
-    version = "${property("mod.version")}+${property("deps.minecraft")}-neoforge"
+    version = "${property("mod.version")}-${property("deps.minecraft")}-neoforge"
     changelog = provider { rootProject.file("CHANGELOG.md").readText() }
     modLoaders.add("neoforge")
 

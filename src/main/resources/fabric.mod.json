@@ -1,22 +1,25 @@
 {
   "schemaVersion": 1,
-  "id": "defaulted_hotkeys",
-  "name": "Defaulted Hotkeys",
-  "version": "${version}",
+  "id": "${mod_id}",
+  "name": "${mod_name}",
+  "version": "${mod_version}",
   "authors": [
-    "IAFEnvoy"
+    "${mod_authors}"
   ],
   "contact": {
-    "sources": "",
-    "issues": ""
+    "sources": "${mod_repo_url}",
+    "issues": "${mod_repo_url}/issues"
   },
-  "description": "Change any default keybindings.",
-  "icon": "logo.png",
-  "license": "MIT",
+  "description": "${mod_description}",
+  "icon": "${mod_logo}",
+  "license": "${mod_license}",
   "environment": "*",
   "entrypoints": {
   },
   "mixins": [
-    "defaulted_hotkeys.mixins.json"
-  ]
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "minecraft": [${supported_minecraft_versions}]
+  }
 }

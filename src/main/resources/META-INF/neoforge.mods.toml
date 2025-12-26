@@ -1,25 +1,27 @@
 modLoader = "javafml"
 loaderVersion = "[2,)"
-license = "MIT"
+license = "${mod_license}"
+issueTrackerURL = "${mod_repo_url}/issues"
 
 [[mods]]
-modId = "defaulted_hotkeys"
-displayName = "Defaulted Hotkeys"
-version = "${version}"
-logoFile = "logo.png"
-authors = "IAFEnvoy"
-description = '''Change any default keybindings.'''
+modId = "${mod_id}"
+displayName = "${mod_name}"
+version = "${mod_version}"
+logoFile = "${mod_logo}"
+authors = "${mod_authors}"
+description = '''${mod_description}'''
 
-[[dependencies.defaulted_hotkeys]]
+[[dependencies.${mod_id}]]
 modId = "neoforge"
 type = "required"
 versionRange = "[1,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.defaulted_hotkeys]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 type = "required"
+versionRange = "${supported_minecraft_versions}"
 
 [[mixins]]
-config = "defaulted_hotkeys.mixins.json"
+config = "${mod_id}.mixins.json"

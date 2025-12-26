@@ -1,6 +1,7 @@
-package com.iafenvoy.dhks;
+package com.iafenvoy.dhks._loader;
 
 //? !fabric {
+import com.iafenvoy.dhks.DefaultHotkeys;
 //? neoforge {
 /*import net.neoforged.fml.common.Mod;
 *///?} else {
